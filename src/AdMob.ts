@@ -18,6 +18,7 @@ async function initialize(): Promise<InitializationStatus[]> {
  * @returns Promise of each mediation adapter's initialization status
  */
 async function getInitializationStatus(): Promise<InitializationStatus[]> {
+
   return RNAdMobAdManager.getInitializationStatus();
 }
 

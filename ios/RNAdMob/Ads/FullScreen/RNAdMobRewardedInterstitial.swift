@@ -1,7 +1,6 @@
 import Foundation
 import GoogleMobileAds
 
-@objc(RNAdMobRewardedInterstitial)
 class RNAdMobRewardedInterstitial: RNAdMobFullScreenAd<GADRewardedInterstitialAd> {
     static let AD_TYPE = "RewardedInterstitial"
     
@@ -9,7 +8,7 @@ class RNAdMobRewardedInterstitial: RNAdMobFullScreenAd<GADRewardedInterstitialAd
         return RNAdMobRewardedInterstitial.AD_TYPE
     }
     
-    override func load(unitId: String, adRequest: GAMRequest, adLoadDelegate: RNAdMobFullScreenAd<GADRewardedInterstitialAd>.AdLoadDelegate, fullScreenContentDelegate: RNAdMobFullScreenAd<GADRewardedInterstitialAd>.FullScreenContentDelegate) {
+    override func load(unitId: String, adRequest: GADRequest, adLoadDelegate: RNAdMobFullScreenAd<GADRewardedInterstitialAd>.AdLoadDelegate, fullScreenContentDelegate: RNAdMobFullScreenAd<GADRewardedInterstitialAd>.FullScreenContentDelegate) {
         GADRewardedInterstitialAd.load(withAdUnitID: unitId, request: adRequest) {
             (ad, error) in
             if (error != nil) {

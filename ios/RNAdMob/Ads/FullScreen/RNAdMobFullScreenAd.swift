@@ -10,7 +10,7 @@ class RNAdMobFullScreenAd<T>: NSObject {
         fatalError("Method `getAdType` must be overriden")
     }
     
-    func load(unitId: String, adRequest: GAMRequest, adLoadDelegate: AdLoadDelegate, fullScreenContentDelegate: FullScreenContentDelegate) {
+    func load(unitId: String, adRequest: GADRequest, adLoadDelegate: AdLoadDelegate, fullScreenContentDelegate: FullScreenContentDelegate) {
         fatalError("Method `load` must be overriden")
     }
     
@@ -131,7 +131,7 @@ class RNAdMobFullScreenAd<T>: NSObject {
             self.unitId = unitId;
             self.options = options;
         }
-        func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
             module.presentPromiseHolder.resolve(requestId: requestId)
             module.sendEvent(eventName: kEventAdPresented, requestId: requestId, data: nil)
         }
@@ -141,7 +141,11 @@ class RNAdMobFullScreenAd<T>: NSObject {
             
             module.adHolder.remove(requestId: requestId)
         }
+        func adWillDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+            print(" AdWillDismissFullScreenContent123 ")
+        }
         func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+            print(" AdDidDismissFullScreenContent123 ")
             module.sendEvent(eventName: kEventAdDismissed, requestId: requestId, data: nil)
             
             var haveToRequest = false

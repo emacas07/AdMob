@@ -1,16 +1,16 @@
 import Foundation
 import GoogleMobileAds
 
-@objc(RNAdMobInterstitial)
-class RNAdMobInterstitial: RNAdMobFullScreenAd<GAMInterstitialAd> {
+
+class RNAdMobInterstitial: RNAdMobFullScreenAd<GADInterstitialAd> {
     static let AD_TYPE = "Interstitial"
     
     override func getAdType() -> String {
         return RNAdMobInterstitial.AD_TYPE
     }
     
-    override func load(unitId: String, adRequest: GAMRequest, adLoadDelegate: RNAdMobFullScreenAd<GAMInterstitialAd>.AdLoadDelegate, fullScreenContentDelegate: RNAdMobFullScreenAd<GAMInterstitialAd>.FullScreenContentDelegate) {
-        GAMInterstitialAd.load(withAdManagerAdUnitID: unitId, request: adRequest) {
+    override func load(unitId: String, adRequest: GADRequest, adLoadDelegate: RNAdMobFullScreenAd<GADInterstitialAd>.AdLoadDelegate, fullScreenContentDelegate: RNAdMobFullScreenAd<GADInterstitialAd>.FullScreenContentDelegate) {
+        GADInterstitialAd.load(withAdUnitID: unitId, request: adRequest) {
             (ad, error) in
             if (error != nil) {
                 adLoadDelegate.onAdFailedToLoad(error: error!)
@@ -21,7 +21,7 @@ class RNAdMobInterstitial: RNAdMobFullScreenAd<GAMInterstitialAd> {
         }
     }
     
-    override func show(ad: GAMInterstitialAd, viewController: UIViewController, requestId: Int) {
+    override func show(ad: GADInterstitialAd, viewController: UIViewController, requestId: Int) {
         ad.present(fromRootViewController: viewController)
     }
 }

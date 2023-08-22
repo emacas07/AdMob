@@ -8,7 +8,7 @@ class RNAdMobRewarded: RNAdMobFullScreenAd<GADRewardedAd> {
         return RNAdMobRewarded.AD_TYPE
     }
     
-    override func load(unitId: String, adRequest: GAMRequest, adLoadDelegate: RNAdMobFullScreenAd<GADRewardedAd>.AdLoadDelegate, fullScreenContentDelegate: RNAdMobFullScreenAd<GADRewardedAd>.FullScreenContentDelegate) {
+    override func load(unitId: String, adRequest: GADRequest, adLoadDelegate: RNAdMobFullScreenAd<GADRewardedAd>.AdLoadDelegate, fullScreenContentDelegate: RNAdMobFullScreenAd<GADRewardedAd>.FullScreenContentDelegate) {
         GADRewardedAd.load(withAdUnitID: unitId, request: adRequest) {
             (ad, error) in
             if (error != nil) {

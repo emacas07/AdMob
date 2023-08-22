@@ -34,7 +34,7 @@
     if (!_bannerView) {
         _bannerView = [[GAMBannerView alloc] initWithAdSize:size];
         _bannerView.delegate = self;
-        _bannerView.appEventDelegate = self;
+//        _bannerView.appEventDelegate = self;
         _bannerView.adSizeDelegate = self;
         _bannerView.rootViewController = RCTPresentedViewController();
         [self addSubview:_bannerView];
@@ -43,20 +43,20 @@
     _bannerView.adSize = size;
     if (_sizes) {
         if ([_unitId hasPrefix:@"/"]) {
-            _bannerView.validAdSizes = [RNAdMobCommon stringsToValues:_sizes];
+//            _bannerView.validAdSizes = [RNAdMobCommon stringsToValues:_sizes];
         } else {
             RCTLogError(@"Trying to set sizes in non Ad Manager unit Id");
         }
     }
     
-    GAMRequest *request = [RNAdMobCommon buildAdRequest:_requestOptions];
+    GADRequest *request = [RNAdMobCommon buildAdRequest:_requestOptions];
     [_bannerView loadRequest:request];
 }
 
 # pragma mark GADBannerViewDelegate
 
 /// Tells the delegate an ad request loaded an ad.
-- (void)bannerViewDidReceiveAd:(GAMBannerView *)bannerView
+- (void)bannerViewDidReceiveAd:(GADBannerView *)bannerView
 {
     _onSizeChange(@{
         @"width": @(_bannerView.bounds.size.width),
@@ -69,7 +69,7 @@
 }
 
 /// Tells the delegate an ad request failed.
-- (void)bannerView:(__unused GAMBannerView *)bannerView
+- (void)bannerView:(__unused GADBannerView *)bannerView
 didFailToReceiveAdWithError:(NSError *)error
 {
     if (_onAdFailedToLoad) {
@@ -80,7 +80,7 @@ didFailToReceiveAdWithError:(NSError *)error
 
 /// Tells the delegate that a full screen view will be presented in response
 /// to the user clicking on an ad.
-- (void)bannerViewWillPresentScreen:(__unused GAMBannerView *)bannerView
+- (void)bannerViewWillPresentScreen:(__unused GADBannerView *)bannerView
 {
     if (_onAdOpened) {
         _onAdOpened(nil);
@@ -88,14 +88,14 @@ didFailToReceiveAdWithError:(NSError *)error
 }
 
 /// Tells the delegate that the full screen view will be dismissed.
-- (void)bannerViewDidDismissScreen:(__unused GAMBannerView *)bannerView
+- (void)bannerViewDidDismissScreen:(__unused GADBannerView *)bannerView
 {
     if (_onAdClosed) {
         _onAdClosed(nil);
     }
 }
 
-- (void)adView:(__unused GAMBannerView *)bannerView didReceiveAppEvent:(NSString *)name withInfo:(NSString *)info
+- (void)adView:(__unused GADBannerView *)bannerView didReceiveAppEvent:(NSString *)name withInfo:(NSString *)info
 {
     if (_onAppEvent) {
         _onAppEvent(@{
@@ -105,7 +105,7 @@ didFailToReceiveAdWithError:(NSError *)error
     }
 }
 
-- (void)adView:(GAMBannerView *)bannerView willChangeAdSizeTo:(GADAdSize)size
+- (void)adView:(GADBannerView *)bannerView willChangeAdSizeTo:(GADAdSize)size
 {
     _onSizeChange(@{
         @"width": @(_bannerView.bounds.size.width),

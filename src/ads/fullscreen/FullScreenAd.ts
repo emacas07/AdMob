@@ -71,7 +71,7 @@ export default class FullScreenAd<
       type === 'AppOpen' ||
       (this.options as FullScreenAdOptions).loadOnMounted
     ) {
-      this.load().catch(() => {});
+      this.load().catch(() => { });
     }
   }
 
@@ -89,6 +89,7 @@ export default class FullScreenAd<
    * @param handler Event handler
    */
   addEventListener(event: E, handler: H) {
+
     const eventHandler = (e: Event) => {
       if (e.type === this.type && e.requestId === this.requestId) {
         if (event === 'adFailedToLoad' || event === 'adFailedToPresent') {
@@ -102,6 +103,7 @@ export default class FullScreenAd<
     const listener = eventEmitter.addListener(event, eventHandler);
     this.listeners.push(listener);
     return {
+
       remove: () => {
         listener.remove();
         const index = this.listeners.indexOf(listener);

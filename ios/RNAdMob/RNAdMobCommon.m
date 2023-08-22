@@ -78,10 +78,6 @@
         request.keywords = requestOptions[@"keywords"];
     }
     
-    if (requestOptions[@"location"]) {
-        NSArray<NSNumber *> *latLong = requestOptions[@"location"];
-        [request setLocationWithLatitude:[latLong[0] doubleValue] longitude:[latLong[1] doubleValue] accuracy:[requestOptions[@"locationAccuracy"] doubleValue]];
-    }
     
     if (requestOptions[@"contentUrl"]) {
         request.contentURL = requestOptions[@"contentUrl"];

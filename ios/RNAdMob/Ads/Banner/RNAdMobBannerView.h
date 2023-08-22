@@ -8,7 +8,7 @@
 
 @interface RNAdMobBannerView : UIView <GADBannerViewDelegate, GADAppEventDelegate, GADAdSizeDelegate>
 
-@property GAMBannerView *bannerView;
+@property GADBannerView *bannerView;
 
 @property (nonatomic, copy) NSString *unitId;
 @property (nonatomic, copy) NSString *size;
